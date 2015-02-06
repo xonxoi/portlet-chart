@@ -1,0 +1,66 @@
+#parse("header.vm")
+
+<script type="text/javascript">
+$(function(){
+    $(".sv-noborder").dblclick(function(){
+        window.location = "$imageUrl" + "&id=" + $(this).attr('alt');      
+    });
+});
+</script>
+</head>
+
+<div class="container container-emp">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                <strong>Niteco Employee List</strong>
+            </h2>
+        </div>
+        <div class="panel-body">
+            <form action="$showAddUrl" method="post">
+                <table id="tblEmployee" class="table table-bordered">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="16%">
+                        <col width="20%">
+                        <col width="18%">
+                        <col width="10%">
+                        <col width="12%">
+                        <col width="14%">
+                    </colgroup>
+                    <thead style="font-weight: bold;">
+                        <td>Id</td>
+                        <td>Employee Name</td>
+                        <td>Department</td>
+                        <td>Position</td>
+                        <td>Salary</td>
+                        <td>Address</td>
+                        <td>Avatar</td>
+                    </thead>
+                    <tbody>
+                        #foreach( $emp in $lstEmployee )
+                            <tr>
+                                <td>$emp.employeeId</td>
+                                <td>$emp.employeeName</td>
+                                <td>$emp.department</td>
+                                <td>$emp.position</td>
+                                <td>$emp.salary</td>
+                                <td>$mapCity.get($emp.address)</td>
+                                <td align="center" style="padding:0">
+                                    #if ($emp.picture != "")
+                                        $emp.picture
+                                    #else
+                                        <img class="sv-noborder" alt="$emp.employeeId" src="${cPath}/img/no-avatar.jpg" />
+                                    #end
+                                </td>
+                            </tr>
+                        #end
+                    </tbody>
+                </table>
+                <input type="submit" value="Add Employee" class="btn btn-default"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+

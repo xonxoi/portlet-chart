@@ -1,0 +1,18 @@
+.container-emp {
+    width :             50%;
+    margin-left :     	30px;
+}
+
+.container-city {
+    width :             70%;
+    margin-left :       30px;
+}
+
+.sv-noborder{
+	width :            96px;
+	height :           96px;
+}
+
+#nitecoChart {
+    width :             95%;	
+}

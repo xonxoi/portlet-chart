@@ -1,0 +1,54 @@
+#parse("header.vm")
+
+<script type="text/javascript">
+$(function(){
+
+    $("#fileUpload").change(function(){
+        previewImage(this);
+    });
+    
+});
+
+function previewImage(input){
+    var reader = new FileReader();
+    
+    reader.onload = function(e){
+        $("#tempImage").attr("src", e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+}
+
+function goHome(){
+    window.location = "$homeUrl";
+}
+</script>
+</head>
+
+<div class="container container-emp">
+    <div class="panel panel-info">
+         <div class="panel-heading">
+            <h2 class="panel-title">
+                <strong>Employee's picture</strong>
+            </h2>
+         </div>
+         <div class="panel-body">
+            <form action="$updateImageUrl" method="post" enctype="multipart/form-data">
+                <label class="control-label">Employee ID: $employeeId</label>
+                <input id="fileUpload" type="file" name="file" value="Select File" />
+                <br></br>
+                <div id="imgFrame">
+                    #if ($emp.picture != "")
+                        $emp.picture
+                    #else
+                        <img class="sv-noborder" alt="$emp.employeeId" src="${cPath}/img/no-avatar.jpg" />
+                    #end
+                </div>
+                <br></br>
+                <input type="submit" value="Submit" class="btn btn-info" />
+                <input type="button" value="Cancel" onclick="goHome()" class="btn btn-info" />
+                <input type="hidden" name="id" value="$employeeId" />
+            </form>
+         </div>
+    </div>
+</div>

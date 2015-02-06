@@ -1,0 +1,49 @@
+#parse("header.vm")
+</head>
+
+<div class="container container-city">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                <strong>City List</strong>
+            </h2>
+        </div>
+        
+        <div class="panel-body">
+            <form action="$cityFormURL" method="POST">    
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="15%"/>
+                        <col width="50%"/>
+                        <col width="35%"/>
+                    </colgroup>
+                    <thead style="font-weight: bold;">
+                        <tr>
+                            <td>ID</td>
+                            <td>City Name</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    #foreach( $city in $cityList )
+                        <tr>
+                            <td>$city.id</td>
+                            <td>$city.cityName</td>
+                            <td>
+                                #set ( $editCity = $editURL + "&id=" + $city.id )
+                                #set ( $removeCity = $removeURL + "&id=" + $city.id )
+                                <a href="$editCity">Edit</a>
+                                /
+                                <a href="$removeCity"><b>Remove</b></a>
+                            </td>
+                        </tr>
+                    #end
+                </table>
+                <input type="submit" class="btn btn-primary" value="Add City"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

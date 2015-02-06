@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<portlet-app xmlns:sv="http://www.senselogic.se/2006/11/07/portlet"
+	xmlns="http://java.sun.com/xml/ns/portlet" version="1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
+
+	<portlet>
+		<portlet-name>niteco-employee-portlet</portlet-name>
+		<display-name>Niteco Portlet using Spring MVC</display-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet
+		</portlet-class>
+
+		<init-param>
+			<name>contextConfigLocation</name>
+			<value>/WEB-INF/niteco-employee-portlet.xml</value>
+		</init-param>
+
+		<resource-bundle>
+			Language-ext
+		</resource-bundle>
+
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+			<portlet-mode>CONFIG</portlet-mode>
+		</supports>
+
+		<portlet-info>
+			<title>Niteco Employees</title>
+			<short-title>Portlet Niteco Employees</short-title>
+			<keywords></keywords>
+		</portlet-info>
+
+		<portlet-preferences>
+			<preference>
+				<name>text</name>
+				<value></value>
+			</preference>
+		</portlet-preferences>
+
+		<sv:window>
+			<sv:portlet-mode>CONFIG</sv:portlet-mode>
+			<sv:width>480</sv:width>
+			<sv:height>360</sv:height>
+		</sv:window>
+	</portlet>
+
+	<portlet>
+		<portlet-name>niteco-city-portlet</portlet-name>
+		<display-name>Niteco City Portlet</display-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet
+		</portlet-class>
+
+		<init-param>
+			<name>contextConfigLocation</name>
+			<value>/WEB-INF/niteco-city-portlet.xml</value>
+		</init-param>
+		
+		<resource-bundle>
+            Language-ext
+        </resource-bundle>
+
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+
+		<portlet-info>
+			<title>Niteco Employees</title>
+			<short-title>Portlet Niteco Employees</short-title>
+			<keywords></keywords>
+		</portlet-info>
+	</portlet>
+	
+	<portlet>
+        <portlet-name>niteco-chart-portlet</portlet-name>
+        <display-name>Niteco Chart Portlet</display-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet
+        </portlet-class>
+
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>/WEB-INF/niteco-chart-portlet.xml</value>
+        </init-param>
+        
+        <resource-bundle>
+            Language-ext
+        </resource-bundle>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>VIEW</portlet-mode>
+        </supports>
+    </portlet>
+	
+	<!-- <custom-portlet-mode> -->
+	<!-- <portlet-mode>CONFIG</portlet-mode> -->
+	<!-- </custom-portlet-mode> -->
+
+</portlet-app>

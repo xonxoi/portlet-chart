@@ -1,0 +1,103 @@
+#parse("header.vm")
+<script type="text/javascript">
+function validate(){
+    var id = document.getElementById("empId").value;
+    if(id == "" || id == null ){
+        alert("Please enter employee Id");
+        return;
+    }
+
+    var sal = document.getElementById("inputSal").value;
+    
+    if(!isNaN(sal) && sal != ""){
+        document.getElementById("registForm").submit();
+    }
+    else{
+        alert("Salary must be an integer");
+    }
+}
+
+function showList(){
+    window.location = "$homeUrl";
+}
+</script>
+</head>
+
+<div class="container container-emp">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                <strong>
+                    #if ( $request.getParameter("action") == "showAdd" )
+                        Employee Registry Form
+                    #else
+                        Employee Information
+                    #end
+                </strong>
+            </h2>
+        </div>
+        <div class="panel-body">
+            #if ($errMessage)
+                <span style="color:red">$errMessage</span>
+            #end
+            <form id="registForm" action="$registUrl" method="post" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="id" class="col-sm-2 control-label">Employee Id</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="empId" name="id" value="#if($emp.employeeId)$emp.employeeId#end" 
+                        #if( $request.getParameter("action") == "showEdit" )
+                            readonly
+                        #end
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Employee Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="name" value="#if($emp.employeeName)$emp.employeeName#end" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dept" class="col-sm-2 control-label">Department</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="dept" value="#if($emp.department)$emp.department#end" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="position" class="col-sm-2 control-label">Position</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="position" value="#if($emp.position)$emp.position#end" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="col-sm-2 control-label">Address</label>
+                    <div class="col-sm-4">
+                        <select name="address" class="form-control">
+                            #foreach ( $city in $listCity )
+                                <option value="$city.id"
+                                    #if($emp.address == $city.id)
+                                        selected
+                                    #end
+                                > $city.cityName </option>
+                            #end
+                        </select>
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <label for="salary" class="col-sm-2 control-label">Salary</label>
+                    <div class="col-sm-4">
+                         <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input id="inputSal" type="text" class="form-control" name="salary" value="#if($emp.salary)$emp.salary#end" />
+                        </div>
+                    </div>
+                </div>
+                <input type="button" class="btn btn-info" value="Submit" onclick="validate()" />
+                <input type="button" class="btn btn-info" value="Cancel" onclick="showList()"/>    
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

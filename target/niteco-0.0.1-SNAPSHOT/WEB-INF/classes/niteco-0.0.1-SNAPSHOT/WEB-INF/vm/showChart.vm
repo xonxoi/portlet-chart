@@ -1,0 +1,33 @@
+#parse("header.vm")
+<script src="${cPath}/js/Chart.js"></script>
+<script src="${cPath}/js/drawchart.js"></script>
+</header>
+
+<div class="container container-city">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                <strong>Niteco Chart</strong>
+            </h2>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        <select id="dataSource" class="form-control">
+                            <option value="employee">Employee Information</option>
+                            <option value="city">City Information</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12"
+                        <div id="barArea">
+                            <canvas id="nitecoChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

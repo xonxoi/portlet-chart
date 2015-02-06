@@ -1,0 +1,62 @@
+#parse("header.vm")
+</head>
+
+<div class="container container-emp">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                <strong>Niteco Employee List</strong>
+            </h2>
+        </div>
+        <div class="panel-body">
+            <form action="$showAddUrl" method="post">
+                <table id="tblEmployee" class="table table-bordered table-hover">
+                    <colgroup>
+                        <col width="9%">
+                        <col width="18%">
+                        <col width="15%">
+                        <col width="18%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="20">
+                    </colgroup>
+                    <thead style="font-weight: bold;">
+                        <td>Id</td>
+                        <td>Employee Name</td>
+                        <td>Department</td>
+                        <td>Position</td>
+                        <td>Salary</td>
+                        <td>Address</td>
+                        <td>Action</td>
+                    </thead>
+                    <tbody>
+                    #foreach( $emp in $lstEmployee )
+                        <tr>
+                            <td>$emp.employeeId</td>
+                            <td>$emp.employeeName</td>
+                            <td>$emp.department</td>
+                            <td>$emp.position</td>
+                            <td>$emp.salary</td>
+                            <td>#if($mapCity.get($emp.address))
+                                    $mapCity.get($emp.address)
+                                #else
+                                    N/A
+                                #end
+                            </td>
+                            <td>
+                                #set( $editEmployee = $editUrl + "&id=" + $emp.employeeId )
+                                #set( $removeEmployee = $removeUrl + "&id=" + $emp.employeeId) 
+                                <a href="$editEmployee" >Edit</a>
+                                &nbsp;/&nbsp;
+                                <a href="$removeEmployee" onclick="return confirm('Are you sure to delete this employee ?')" ><b>Delete</b></a>
+                            </td>
+                        </tr>
+                    #end
+                    </tbody>
+                </table>
+                <input type="submit" class="btn btn-info" value="Add Employee" />
+            </form>
+        </div>
+    </div>
+</div>
+

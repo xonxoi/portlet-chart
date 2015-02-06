@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:jms="http://www.springframework.org/schema/jms"
+    xmlns:amq="http://activemq.apache.org/schema/core"
+    xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/jms
+		http://www.springframework.org/schema/jms/spring-jms.xsd
+		http://activemq.apache.org/schema/core
+		http://activemq.apache.org/schema/core/activemq-core.xsd
+        ">
+	<context:component-scan base-package="se.niteco" />
+	<context:annotation-config />
+<!--     <mvc:annotation-driven /> -->
+<!--     <tx:annotation-driven /> -->
+    <amq:topic id="destination" physicalName="topic" />
+    <amq:connectionFactory id="connectionFactory"
+        brokerURL="tcp://localhost:61616" />
+
+<!-- 	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate" -->
+<!-- 		c:_-ref="connectionFactory" p:defaultDestinationName="topic" /> -->
+
+<!-- 	<bean id="citySender" class="se.niteco.jms.CitySenderImpl" -->
+<!-- 		c:_-ref="jmsTemplate" /> -->
+
+<!-- 	<jms:listener-container container-type="default" -->
+<!-- 		connection-factory="connectionFactory" acknowledge="auto" concurrency="10-50"> -->
+<!-- 		<jms:listener destination="topic" ref="employeeController" -->
+<!-- 			method="receiveMessage" /> -->
+<!-- 	</jms:listener-container> -->
+
+</beans>

@@ -1,0 +1,66 @@
+#parse("header.vm")
+
+<script type="text/javascript">
+function goHome(){
+    window.location = "$homeURL";
+}
+
+$(function(){
+    $("#btnSubmit").click(function(){
+        var input = $("#cityId").val();
+        if(input != ""){
+            $("#frmAddCity").submit();
+        }
+        else{
+            alert("Please enter city ID");
+        }
+    });
+});    
+</script>
+</head>
+
+<div class="container container-city">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                <strong>
+                    #if( $request.getParameter("action") == "showCityForm")
+                        New City Form
+                    #else
+                        City Information
+                    #end
+                </strong>
+            </h2>
+        </div>
+        
+        <div class="panel-body">
+            <form id="frmAddCity" action="$addCityURL" method="POST" class="form-horizontal" role="form">
+                 <div class="form-group">
+                    <label for="id" class="col-sm-2 control-label">City Id</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="cityId" name="cityId" value="#if($city.id)$city.id#end" 
+                        #if( $request.getParameter("action") == "showEdit" )
+                            readonly
+                        #end
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">City Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="cityName" value="#if($city.cityName)$city.cityName#end" />
+                    </div>
+                </div>
+                <input type="button" class="btn btn-primary" value="Submit" id="btnSubmit"/>
+                <input type="button" class="btn btn-primary" value="Cancel" onclick="goHome()"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+  
+                    
+            
+
